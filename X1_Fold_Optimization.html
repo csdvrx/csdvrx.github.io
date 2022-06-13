@@ -1,0 +1,1937 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>X1 Fold (20RL 20RK) Optimization</title>
+	<meta name='Generator' content='Zim 0.74.3'>
+	<style type='text/css'>
+		a          { text-decoration: none      }
+		a:hover    { text-decoration: underline }
+		a:active   { text-decoration: underline }
+		strike     { color: grey                }
+		u          { text-decoration: none;
+					 background-color: yellow   }
+		tt         { color: #2e3436;            }
+		pre        { color: #2e3436;
+					 margin-left: 20px          }
+		h1         { text-decoration: underline;
+					 color: #4e9a06; margin-bottom: 0 }
+		h2         { color: #4e9a06; margin-bottom: 0 }
+		h3         { color: #4e9a06; margin-bottom: 0 }
+		h4         { color: #4e9a06; margin-bottom: 0 }
+		h5         { color: #4e9a06; margin-bottom: 0 }
+		p          { margin-top: 0              }
+		span.zim-tag {
+			color: #ce5c00;
+		}
+		div.zim-object {
+			border-style:solid;
+			border-width:1px;
+		}
+		.checked-box {list-style-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAANOgAADMQBiN+4gQAAAAd0SU1FB9gKGQ8sMEGsKGkAAAAZdEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIEdJTVBXgQ4XAAAEBUlEQVRIx62V22tdRRTGf7Nn73P2ybntnNOe3NqkPTGgLTVUUZF6QatSLOKTPgqCIqLgQ0H/A1sQQbBYCBb1QfAxiC8tSO1FqHkwJVKtjdTGNraUmObsc9nXmfGh7cGYpM1D5nHWzPetteZb3wg2eB2YqYm4zSadsMtoboiNBH/3TE0awx6j+MRoxoTg/IYRvP19TQrJS0bzhdHGSyKFkLTtjSKwMjyiEz43ynhtP6bdjBCWyFobAf7eT7VhNF/q1FRbjYjmUohlCVPwnB+6FUxMTJipqSmUUhhjEGKd3bMT4ks/Y6oLBK2Yth8hHYtCJXOix7Nf7xLMzc0xOzvLzp078TyPNE3viW3QJPXzhNWbxFFKHCmMhoLn/FHodd48vGfhapdAacXQlkFK5dL6wIUm6fuTZPuvqDQhaMUYYyiVyuQr6rXDexYuAdi3tSv1ZJNs/R/CaszzT+1na88uXFnCEnJVgivBNN8uTJKmHQI/ptOOcXNZzMz9mOqFs90OHpipWcYwlo5P4ebnuOkrvr5wgrH+h3im7y36MzuwRXYZeKha/OhP0EkadFoxQSdGSotedR/+XwMc2XvKdNUFOFqZx6LKZWIiwjgkikNmLp/hm8sH+K1zjFTHXfBYdTi+eJArzXM0GxFxoBDCopLvo/fqEwi1XPkWkGqjFo2TgB1jOYZUKZTS/D1/ncmLh7jon0IbRWoiTi59ymzzJEEQE3cStNZsGxqlfPE57MBbOR8fP3hDGalOO9fq2DlBvmZw8xa2IxACGn6TydlD/O6f5OzSV/zif0cYhLQaEXGkKBbz7Ov/AOlXV1cxgBJRI3fuSTrpTawt18kWIZN1CFuaONI0w0WOXfsI43YIggh/KUSlhqxrMz74AkOZcWBm9QkH+Gw8NDLuITi+m0yzhluSyJzBLcpblUhFxywSRAEtPwQjsKVN30CNh0uvYuOubSHLtN3J0TO1j0pmBNuFbFWRK0gyPRZpktL2I5JQkclKakNlnh54g6ocvevUr/Ai2a7wineEkcJupA3S1Wg0nVZM2E6wbEF5U5G9Q++wI7sfR7h3N8HVNstykBfzH+KJEZwiWD0aIwxCgJ0R1Mu7GXOeJSuK93bZtQIle4D9pUNU5DC5jEsu55AvZakM5NicGyEj8uuz8bUCQgj67QfY671P3vEoeC69gy695U1U7NG7XV0pUwBjDJa1/JJlWWxzHuflzQe5FJ/GsgUVuZ2t8lEkTvfc0aNHb72flBhjVicQQqCUuvM3/M+WDVguWBrMVdDXEGZlBVEUrVCU9d9s5+fnaTQa2PZyPxEIhJaI1EEoZwX4ncynp6fXrmB4eJjR0VFarRbNZnP9P9rt9gohqNVq1Ov1ZbF/AZGev3hLJ2/zAAAAAElFTkSuQmCC)}
+		.xchecked-box {list-style-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAANOgAADMQBiN+4gQAAAAd0SU1FB9gKGQ8bDYnDxEwAAAAZdEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIEdJTVBXgQ4XAAAEK0lEQVRIx9WVS2hTWRjHf/eR3CY1nbxMH2YiZRQS6qO13YlMVxY3SnVcuNIBFezGpSADLoQqLu1sHJCqdCFSXFpw4YOCSH3BtFqttTNamabX3DS5bfO6uffMoglja3RGcDMHzuac7/z/53++//cd+L8P6VuCPQYZ8ADNgBd4J31DcDcQs+GnHByRocEDv0kfBSjAOlYCs11Q+gpwDegS8LMJ+3QIK0ATzEhV8Odnz5bzw8P4dJ25aJQ/WlvJ1df/K7hSLtOcTNI+Pk69rpMTgqIQhCDvh1/VSpw79+gRrRMTmLZNezLJJsPg+a5dmOEwQlFqg1sWG16/Jv7sGWXDwBACFQjC9HcwIMONKkGp4PGAJGEDS0IQmZlhnWnye3c3eiyGo6qr3WHbrJ+dJf7gAXI6zSIr72T7/fgzmT4FHnTBsgrQBfYvTU0km5vxz86iADnAm0rRPTWFt7cXZccOJJcLAGHb2K9ekT93jmwmwwdAAFpjI6Ntbfxw5879ag7l6o1sr5eHHR3IsRgeQK/M4sQE+YEB7JcvEY6zAj45SWFgAPPxYwzHoQxIkQjTPT0kIxE+Noj8sexFn4/xnh58iQTeSpHkHAdrbIzi0BCOrmNPTpK/eJHM3bt8sCyKQCiR4NWePWSiUZw1+ZLXJm4pFKLhzBlCsRh2RUXacVgeGaF47RrL58+zcP8+RrmMkCQinZ1EL1zAjERqmkH+tLYl1G3bCJw4QUjT0IA0MJfLMX/5MqmHD0nZNiUgtGULG/r7ccXjINWuWbnmqsuFu7sb/4EDNLlcBIEioNs2KUAFGmMxmk6dQm1tRZI+3xBqEkiShBQOox05Ql1nJ26gvuIUAWiKQnj/ftStW5Fk+YuF+NldsbBA4cYN9KdPmaso8Fc62ZJtk7l1C2t0FGdxESHE1xE4hkHh6lX0oSHSpRIewC/LrPf7CSgKNpCamkI/fZr8pUuIZBIcpyaBunahPp1mub+fDyMjGKUSChCsq6Nh717q9u2jbnSU0uAgRrFIwTThyhUCqRS+hgZKLS1fJvDm87SNjZGcnsYUAjcQ8vsJ9/Xh7u1FDgRQN20iks3iDA+zZFmYhQLqzZtsj8WY3L0baY2Sf55ICCKpFHUzM2SEQAJCHg+hY8fQDh5EDgRWDoRC1J88SePRo2geD0XAcBy8b98Sv3ePYDZbbf2rFQjLIphMsmDbaEBQVQkePox26BCSz7e6i4bDrDt+nGYhmBscpFAskheC4Js3bPR4qHphFYEnlcI7P4/jdqNpGu8TCe4oCsXr1z//F2ga3+/cSfTJE0qmSVYIsKzaOZDcbjKyzFIiwfvt21kMBLA07YsetzWNd+3tLLW0sH5igvT8PH9Go/z44kX+E4LGjg7GDYOcy4XlOEgLC//5P/5LCFzxOPLmzWyIx+m6fduu7v0NVGqyTSycKksAAAAASUVORK5CYII=)}
+		.unchecked-box {list-style-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAANOgAADMQBiN+4gQAAAAd0SU1FB9gKGQ8qAt8h3m8AAAAZdEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIEdJTVBXgQ4XAAAA60lEQVRIx+2VsQqDMBRF70sCLg5OLoKgjk7+lJ/hh+STXBwcnRz8ArMEkrxOFktbaC3tULzTg5e8k5vADXDq70VbobXmvu/hvQczg4heHrJfXxQFuq67blZbMc8zpmlCXddIkgTOuZcBUko45zCOI6y1Nz2xFSEEZFmGOI7fGg4A3nsQEZqmuXOu9jallACAtm3fvmutNaIoAjM/dkBECCF89KCbk4eAb+kEnIAT8EsAM0OIz3hSyrssUvss8t5fg+uIrLXPs0gIgWVZYIyBUurQyYdheO4gz3NUVQVjDNZ1PfSjpWmKsixvehfB9GBZ3NndrgAAAABJRU5ErkJggg==)}
+		.migrated-box {list-style-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAANOgAADMQBiN+4gQAAAAd0SU1FB+AKHREFA8vJSnkAAAAZdEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIEdJTVBXgQ4XAAAC1klEQVRIx+2VT0hUURTGf/e958w4Tc3TYowMw1GyEgwr1MqsFmbZIrIWQZsWJUjbdoHQpl3Qps0swnCRECQFYkR/TC1iKkqmfzAKTo2Vf8hoRsfR995tkRMT87RRWkUHHhy495zvnvvu933wP/75EKkkEAjIYDCIaZpIKRFCZN0kfX9xcTGtra2/irVUEolECIfDlJeXo+s6hmFkDaCqKoZhEAqFSCaTv60pqcSyLAoLC/F4PEtqDmCaJkIIKisrMybX0sdUVRWA5ubmPzdNjjI1cpXkZC/O1fV03PXgdDqRUtpPIITAsqxsDz0Z/3CZQv8uqo4N4C8/Tp2/DdM0MiZQlvk41OTkI/LW1SGtCVb5drD3eCc71wcA+VcAHA5vDd8+3UGakxiJV7i9pdQevU5T1R35pJ3MV5QW1pf+0kWBheJ2SWua8EQXZXsu4fVVYEz1sEKvof5EuxjoPvzpcRvrdp9C2gGMx6cpOHBmbImMesds7BZubwMVDTfXDnQ3vQfK7AC8wLfExMX5whyQc3q2OEnjGm5vE76SQxsfBLr77a7CNf+n0r/l6sSMtsBSnurckiIILCobAtVZhpF4gZF4jubaymj4Ch/fd380LE7bAnjc0NPxk2yqpmEuwGxF0ag+0k5uTpzZeBeaazvj0We8fXojainsb2xh2BZgbe0gSIllzSIUh63wfQ6dZ/O2fbjcKlOj58jJ3cVENESw5yErc9nf2MLQ4jwQAkV1Lqiq37/cZ9WaahJjF9AcmxiPDhLs7ePe23oOnmUwg2hSShQle96tKDjA2HAniusgo9FxnvY9Jxw7RWzGYy92QghM00x5g53qp9sHmtB58/o2umOI2NwGolMnMYUHIb7aAyiKwsjICLqu2/qBEIKUUAohMaSHSLyBSMoPTINQ6CX5+fn2AEVFRZSUlBCPx4nFYhl3L4RESjF/GEgX3pSj+Xw+/H7/b3U/AEOZFnp7O5+5AAAAAElFTkSuQmCC)}
+		ul {list-style-image: none}
+		/* ul rule needed to reset style for sub-bullets */
+	</style>
+</head>
+<body>
+
+<!-- Header -->
+<div class='header'>
+	[ <span class='insen'>Prev</span> ]
+
+	[ <span class='insen'>Index</span> ]
+
+	[ <span class='insen'>Next</span> ]
+</div>
+
+<hr />
+
+<!-- Wiki content -->
+
+<div class='pages'>
+	<div class='heading'>
+	<h1>X1 Fold Gen 1 (20RL/20RK) Optimization for Windows <a name='X1 Fold (20RL 20RK) Optimization'></a></h1>
+	</div>
+
+	<div class='content'>
+	<p>
+This page will teach you the software tricks I used to fix my Lenovo X1 Fold for Windows 11.
+</p>
+
+<p>
+With this information in hand, hopefully you will be able to fix yours too!
+</p>
+
+<p>
+If you already have Windows 11 installed, you can try to skip to:<br>
+<ul>
+<li>section 2.4 to remove the apps that are useless or just compromise performance or stability (or both!)</li>
+<li>section 3.1 to deploy scripts to prevent Intel drivers crashes from making your system unusuable</li>
+<li>section 3.3 to disable connected standby and re-enable hibernation if needed</li>
+<li>section 3.7 to deploy scripts to prevent Intel drivers bugs from eating your battery randomly during sleep</li>
+</ul>
+</p>
+
+<p>
+However, I'd recommend a reinstallation from scratch on an empty drive.
+</p>
+
+<p>
+If you prefer Linux, I'm also preparing a Linux guide. It's still a work in progress, but I personally plan to get Arch working fine on my Fold. How I do that will be linked from here when it's ready!
+</p>
+
+<p>
+By the way, I don't have 5G on my Fold, so if you run into problems with 5G WWAN I won't really be able to help - though I'd be happy to! I've tried to buy a 5G Fold but it's just not available in the US :-(
+</p>
+
+<p>
+So if you happen to work at Lenovo or Microsoft and can provide me with a new X1 Fold WWAN (yes, I'll pay for it, and no, I don't want your used/refurbs you are selling on ebay!), get in touch, and I'll be happy to extend this guide! 
+</p>
+
+<h2>0. Introduction<a id="0-introduction" class="h_anchor"></a></h2>
+
+<br>
+
+<h3>0.1 What you'll get from this guide<a id="01-what-youll-get-from-this-guide" class="h_anchor"></a></h3>
+
+<br>
+
+<p>
+What this guide will teach you is how to get a Fold where everything works perfectly.
+</p>
+
+<p>
+Long story short, this is done by getting a "Signature Edition" experience of Windows 11 (currently 21H2, build 22000.708, Experience Pack 1000.22000.708.0) with all the pointless cruft surgically removed, even when Lenovo tries it best to make it hard - then deploying countermeasures to work around Intel drivers bugs than Intel insist DON'T EXIST.
+</p>
+
+<p>
+However, as if by magic, turning off some functions at specific times before sleep will remove most powersaving bugs and BSOD crashes. If Intel says the truth, I guess I must just be lucky lol
+</p>
+
+<h3>0.2 Why the Fold is my favorite device<a id="02-why-the-fold-is-my-favorite-device" class="h_anchor"></a></h3>
+
+<br>
+
+<p>
+First I got a Fold for reading books from my Onedrive, then I found myself hacking with it, spending more and more time on Bash and Vim than I thought I would!
+</p>
+
+<p>
+That's when I realized the Fold had embedded itself so perfectly into my life I had to fix the small (but infuriating!) bugs that prevented me for exploiting it to its full potential.
+</p>
+
+<p>
+There is something unique and special about the Fold: it's a lovely device that fits perfectly in my purse, supports my Wacom pen for drawing schematics, has an OLED screen for dark-mode-late-night reading or hacking sessions, and great multitouch support.
+</p>
+
+<p>
+But that's just the hardware bonuses: the Fold can also act like a normal Windows computer, so I can use either Microsoft Windows On Screen Keyboard, or the equally wonderful Lenovo wireless keyboard. And if I want a fullsize mouse and keyboard, I connect it to my USB-C dock to use my regular peripherals (and 4k OLED external screens...)
+</p>
+
+<p>
+I can code with Vim inside a Windows Terminal, and I can also reboot the Fold into a native Linux (WIP: there are still a few driver issues, but it's extremely promising), say if I want to do NTFS backups or other "complicated" things.
+</p>
+
+<p>
+There's just no equivalent on the market in 2022: an iPad Pro with a good keyboard has no OLED and won't fold (well... it technically CAN if you are REALLY strong... but only once!)
+</p>
+
+<p>
+Oh, and forget about having a native terminal experience as it's an iPad, locked down to the extreme.
+</p>
+
+<p>
+And yes, I've tried the Macbook M1, but I don't care much about the battery life or the CPU performance if it's so big and clunky I won't even bother bringing it with me (yes, I think the Macbook Air is too big, if it's too small for you, lucky you, you can size up to a Pro, while there's nothing smaller for me)
+</p>
+
+<p>
+However, with the Fold, I've got everything I need, always ready, with the Windows experience I like so much.
+</p>
+
+<p>
+All this came to me while I was hacking my scripts at the breakfast diner while waiting for pancakes: that's when I realized I go litteraly everywhere with my Fold!
+</p>
+
+<p>
+I would rarely if ever bring a laptop for breakfast (even a smaller X1 Nano), but for whatever reason, I bring my Fold along!?!? What kind of magic is that?? Hats off to Lenovo for making this wonderful device that integrates so well with my life!
+</p>
+
+<p>
+(illustrative pictures shamelessly lifted from <a href="https://www.lenovo.com/us/en/thinkpad-x1-fold/" title="https://www.lenovo.com/us/en/thinkpad-x1-fold/" class="https">https://www.lenovo.com/us/en/thinkpad-x1-fold/</a>)
+</p>
+
+<p>
+<img src="./X1_Fold_(20RL_20RK)_Optimization/pasted_image011.png">
+</p>
+
+<p>
+And yes, it folds fully (180 degrees) and you really CAN'T TELL WHERE THE CENTER FOLD IS when it's fully opened and flat like a pancake!
+</p>
+
+<p>
+<img src="./X1_Fold_(20RL_20RK)_Optimization/pasted_image012.png"><br>
+<img src="./X1_Fold_(20RL_20RK)_Optimization/pasted_image014.png">
+</p>
+
+<h3>0.3 What power savings ACPI S01x sleep can achieve<a id="03-what-power-savings-acpi-s01x-sleep-can-achieve" class="h_anchor"></a></h3>
+
+<br>
+
+<p>
+For me, the best feature is a modern ACPI S01x Sleep that barely touches the battery: the discharge rate is between 0.5%/h (best) to 1%/h, the latter if you want to use the Fold to play music to your Bluetooth headphones (thanks but no thanks, I'm an audiophile snob lo)
+</p>
+
+<p>
+This is genuine sleep, with immediate resume, without ever using ACPI S4 hibernate which is slow to wake up and tax your NVMe TBW budget!
+</p>
+
+<h4>0.3.1 Mixed used results during the weekend<a id="031-mixed-used-results-during-the-weekend" class="h_anchor"></a></h4>
+
+<br>
+
+<p>
+As you can see yourself from a `Powercfg /sleepstudy /duration 1 <a href="file:///C:/output" title="/output" class="file">/output</a> $home/sleeptudy.html`
+</p>
+
+<p>
+<img src="./X1_Fold_(20RL_20RK)_Optimization/pasted_image.png">
+</p>
+
+<p>
+<img src="./X1_Fold_(20RL_20RK)_Optimization/pasted_image001.png">
+</p>
+
+<p>
+There are 2 cases which are easy to separate using the slope of the discharge curve:<br>
+ - 0.5% (light orange) like session 22, 29, 42, 47 (note how session 29 was misclassified by Windows, while the slope and a glance at the energy change above with basic maths says it's 0.5%/h)<br>
+ - 1% (dark brown) like session 33 and 36, a "worst case" scenario, if you have using the modern features of S01x, like waking up your fold intermittently to switch tracks while streaming audio by Bluetooth to your wireless headphones (for the best quality, be sure to disable AAC with RegEdit if you have LDAC or AptX-HD support)
+</p>
+
+<h4>0.3.2 Typical results on a weekday<a id="032-typical-results-on-a-weekday" class="h_anchor"></a></h4>
+
+<br>
+
+<p>
+Just to be clear: this "1%/h" mode is fully optional: if you don't need your fold to play wireless music during sleep, it will lose 0.5%/h regularly, like a clock.
+</p>
+
+<p>
+Actually, this is how I use my Fold, because this provides the most reliable experience:
+</p>
+
+<p>
+<img src="./X1_Fold_(20RL_20RK)_Optimization/pasted_image045.png">
+</p>
+
+<p>
+<img src="./X1_Fold_(20RL_20RK)_Optimization/pasted_image046.png">
+</p>
+
+<p>
+In session 43 above, the results might be slighly more typical because I left the WIFI on, while it was turned off at night for the other sessions (6,33,36)
+</p>
+
+<p>
+If you need a better estimation, do a longer sleepstudy!
+</p>
+
+<p>
+For example, here I did 30h 53 min:
+</p>
+
+<p>
+<img src="./X1_Fold_(20RL_20RK)_Optimization/pasted_image055.png">
+</p>
+
+<p>
+<img src="./X1_Fold_(20RL_20RK)_Optimization/pasted_image056.png">
+</p>
+
+<p>
+That's 30*60+53=1853 min or 30.883_ hours, 19%/80.883= 0.6152_ so about 0.6% per hour
+</p>
+
+<p>
+Not bad!
+</p>
+
+<h4>0.3.3 The battery is only at most 80% full<a id="033-the-battery-is-only-at-most-80-full" class="h_anchor"></a></h4>
+
+<br>
+
+<p>
+In the graphs above, you may notice the power charge never goes to 100%.
+</p>
+
+<p>
+This is on purpose: to maintain the Fold battery health in the long run, I've capped the charge to 80% using Lenovo Commercial Vantage, which is why 80% is the "ceiling" - yet if I'm putting the device to sleep with 75% of the battery and 12h later I find myself with 69% left, there's more than I need!
+</p>
+
+<p>
+During regular use, expect to lose 10% to 25% (full brightness on light content) of the battery per hour.
+</p>
+
+<p>
+Yes thats a lot, and yes I'm working on improving that, but for a reading device that's ok with me: I hardly read more than 2h continuously without taking a break.
+</p>
+
+<p>
+If I'm coding, it's connected to my charging dock (which supports ThunderBolt while unfortunately the Fold doesn't), and if I'm at a cafe, there're plugs everywhere!
+</p>
+
+<h3>0.4 Hardware suggested for charging<a id="04-hardware-suggested-for-charging" class="h_anchor"></a></h3>
+
+<br>
+
+<p>
+I've been testing different AC adapter to find the smallest one I can take with me: you can see that on the dotted line, which has inflection points showing where I switched from a charger to another.
+</p>
+
+<p>
+If you want to follow that in real time, I recomend the McDodo cable <a href="https://www.amazon.com/Charging-Display-Braided-Compatible-GalaxyS20/dp/B09MS545VF/" title="https://www.amazon.com/Charging-Display-Braided-Compatible-GalaxyS20/dp/B09MS545VF/" class="https">https://www.amazon.com/Charging-Display-Braided-Compatible-GalaxyS20/dp/B09MS545VF/</a> with a GaN adapter.<br>
+<img src="./X1_Fold_(20RL_20RK)_Optimization/pasted_image009.png">
+</p>
+
+<p>
+There are many good brands of GaN AC adapter like Anker, but personally like the AOHI which exists both in a tiny 30W cube <a href="https://www.amazon.com/dp/B097BWY4WG" title="https://www.amazon.com/dp/B097BWY4WG" class="https">https://www.amazon.com/dp/B097BWY4WG</a> ideal for transport and a chubbier 65W <a href="https://www.amazon.com/AOHI-Charger-Magcube-Adapter-Notebook/dp/B09F2F91QW" title="https://www.amazon.com/AOHI-Charger-Magcube-Adapter-Notebook/dp/B09F2F91QW" class="https">https://www.amazon.com/AOHI-Charger-Magcube-Adapter-Notebook/dp/B09F2F91QW</a> if you need a very fast charge: the Fold will happily requesting and charge at 65W with the AOHI that's physically smaller than Lenovo 65W GaN .
+</p>
+
+<p>
+<img src="./X1_Fold_(20RL_20RK)_Optimization/pasted_image002.png"><img src="./X1_Fold_(20RL_20RK)_Optimization/pasted_image008.png">
+</p>
+
+<p>
+The AOHI conveniently come with a cable showing the power drawn: I plug the cable the other way, with the end featuring the screen on the Fold side, to be directly visible and see how much power the Fold is drawing almost in real time :-)
+</p>
+
+<h2>0.6 What are the issues with a default install<a id="06-what-are-the-issues-with-a-default-install" class="h_anchor"></a></h2>
+
+<br>
+
+<p>
+Long story short, the out of the box experience (OOBE) sucks. It's barely usable because of 3 core issues: to support gimmicks like the magnetic keyboard  1) a poor user interface that's 2) generally slow with frequent crashes with 3) bad power saving on top of it.
+</p>
+
+<p>
+Fixing them requires investing a few hours to clean up the default install - and that's if you're lucky enough to be well versed in ACPI / Windows / Scripting etc., while most people aren't. No wonder the reviews were unanimously bad.
+</p>
+
+<p>
+Yet I really wanted a Fold and figured I could fix it... and I did!
+</p>
+
+<p>
+So this guide is here to correct the sad story of the world first foldable computer: I want to give it a happy ending.
+</p>
+
+<p>
+As a product, the Fold should NEVER have been allowed to ship like how you get it: this level of negligence sometimes bordering on malice destroyed any possible chances of success for what's otherwise a wonderful device!!
+</p>
+
+<p>
+As you will see below, here are many bad decisions piled on top of worse decisions, like why add a pooly written piece of sofware that wastes power to control hibernation instead of fixing the hibernation sleep budget trigger value? Really, Lenovo, why?
+</p>
+
+<h3>0.6.1 Windows 10 UI doesn't benefit the X1 Fold<a id="061-windows-10-ui-doesnt-benefit-the-x1-fold" class="h_anchor"></a></h3>
+
+<br>
+
+<p>
+Windows 10 is missing snap and rotation features that are essential on a device like the Fold where you'll often want to segment the screen between 2 applications, then have them "stay in place but rotate in position" when you physically rotate the way you hold your Fold.
+</p>
+
+<p>
+Imagine for example you have the Fold in landscape mode, with a PDF opened on the left, and a text editor on the right: when you rotate to portrait mode, you would expect the PDF to be above the text editor if you did a clockwise rotation, and below if you did a counter clockwise rotation, right?
+</p>
+
+<p>
+Unfortunately, on Windows 10 these sane defauts require some poorly written Lenovo software.
+</p>
+
+<h3>0.6.2 Generally slow, with frequent crashes<a id="062-generally-slow-with-frequent-crashes" class="h_anchor"></a></h3>
+
+<br>
+
+<p>
+The X1 Fold was shown with Windows 10X during the CES 2020: <a href="https://www.neowin.net/news/ces-2020-another-look-at-windows-10x-running-on-the-lenovo-thinkpad-x1-fold-video/" title="https://www.neowin.net/news/ces-2020-another-look-at-windows-10x-running-on-the-lenovo-thinkpad-x1-fold-video/" class="https">https://www.neowin.net/news/ces-2020-another-look-at-windows-10x-running-on-the-lenovo-thinkpad-x1-fold-video/</a>
+</p>
+
+<p>
+When Windows 10X was cancelled, Lenovo had to scrape by whatever engineering resources they had in the midst of the pandemic to hack something on top of Windows 10, at least to make it work more or less like it should have if the Fold had been released with 10X.
+</p>
+
+<p>
+I'm sure they did the best they could with what they had in these bad circumstances, but it's generally a castastrophic user experience: if the unanimous bad reviews didn't convince you, try for yourself the Fold with the vanilla software for like a week.
+</p>
+
+<p>
+I did, and I really wanted to love my Fold, but I couldn't. I tried hacking a few things here and there to make it better, but even with a lot of love and patience, I couldn't take it anymore when it suddently froze out of nowhere (not even a bluescreen, just freezing!) one last time.
+</p>
+
+<p>
+If even a Windows fangirl can't stand it, what are the odds you will?
+</p>
+
+<h3>0.6.3 Bad power savings<a id="063-bad-power-savings" class="h_anchor"></a></h3>
+
+<br>
+
+<p>
+The OOBE is bad, really bad, and the Intel SST sound + wifi drivers are to blame in a large part, even if Intel loves to denies it: just for fun, read<br>
+<a href="https://community.intel.com/t5/Graphics/Intel-Smart-Sound-Tech-Battery-Drain-In-Sleep/m-p/668109" title="https://community.intel.com/t5/Graphics/Intel-Smart-Sound-Tech-Battery-Drain-In-Sleep/m-p/668109" class="https">https://community.intel.com/t5/Graphics/Intel-Smart-Sound-Tech-Battery-Drain-In-Sleep/m-p/668109</a>
+</p>
+
+<p>
+Yes, Intel may have (im)plausible deniability due to multiple possible causes, including poorly made BIOS that often require manual hacking to work like a laptop should, like saving power when closed in a backpack instead of being a fire hazard (Dell, I'm looking at you, people shouldn't need to fix your BIOS <a href="https://github.com/psyq321/Dell5750FirmwareOptimizationRecipe" title="https://github.com/psyq321/Dell5750FirmwareOptimizationRecipe" class="https">https://github.com/psyq321/Dell5750FirmwareOptimizationRecipe</a> if you did your work correctly, and there're too many people saying the same thing for that to just be badmouthing your brand: <a href="https://news.ycombinator.com/item?id=31715364" title="https://news.ycombinator.com/item?id=31715364" class="https">https://news.ycombinator.com/item?id=31715364</a>)
+</p>
+
+<p>
+However, as we will see here, at least on the Fold Intel is 100% to blame for most of the power saving issues, which are the direct cause of the freezes and weird hardware issues.
+</p>
+
+<h4>0.6.4 Yes, it's 100% on Intel!<a id="064-yes-its-100-on-intel" class="h_anchor"></a></h4>
+
+<br>
+
+<p>
+For example, here's what will happen far too often with ACPI S01x sleep if you don't mute the volume or turn off the Wifi:
+</p>
+
+<p>
+<img src="./X1_Fold_(20RL_20RK)_Optimization/pasted_image064.png">
+</p>
+
+<p>
+1% of the battery in about 30 minutes is like 2% per hour!
+</p>
+
+<p>
+Guess where it comes from?
+</p>
+
+<p>
+<img src="./X1_Fold_(20RL_20RK)_Optimization/pasted_image058.png">
+</p>
+
+<p>
+And that's a "not so bad experience" as 11% is on the low side: I've had sleep sessions at 100% active time.
+</p>
+
+<p>
+Can you guess what's connected to 98BC?
+</p>
+
+<p>
+<img src="./X1_Fold_(20RL_20RK)_Optimization/pasted_image060.png">
+</p>
+
+<p>
+The solution is simple: press Win+A then turn of Wifi and mute the volume:
+</p>
+
+<p>
+<img src="./X1_Fold_(20RL_20RK)_Optimization/pasted_image061.png">
+</p>
+
+<p>
+You have to do that every time, or eventually it's going to gobble your battery when you least expect it, and Windows 11 may not even detect the issue so it can't warn you in a powercfg energy diagnostic mode.
+</p>
+
+<p>
+For example here's what happens when just the sound is turned off, with the Wifi still on:
+</p>
+
+<p>
+<img src="./X1_Fold_(20RL_20RK)_Optimization/pasted_image065.png">
+</p>
+
+<p>
+2% in about 1.5 hours is an underappreciation due to the rounding up to the nearest full percentage. I should have waited another 10 minutes...
+</p>
+
+<p>
+As you can see in the top offenders, the PCIe port of the Wifi card wasn't asleep 100% of the time. 
+</p>
+
+<p>
+This is often the only "symptom" of the misbehaving sleep:
+</p>
+
+<p>
+<img src="./X1_Fold_(20RL_20RK)_Optimization/pasted_image066.png">
+</p>
+
+<p>
+But fear not, as we'll deploy simple yet efficient countermeasures: some basic Powershell + Windows Task Scheduler can restart the misbehaving hardware before worse things happen.
+</p>
+
+<h3>0.6.5 Windows 11 is not a cure-all<a id="065-windows-11-is-not-a-cure-all" class="h_anchor"></a></h3>
+
+<br>
+
+<p>
+Windows 11 is good and makes many things much better on the X1 Fold (all the screenshots here are from Windows 11), but even after installing Windows 11, some serious issues remained even outside S01x power saving.
+</p>
+
+<p>
+It was very surprising, as the type of issues were very different: unlike with Windows 10, on 11 I was mostly getting BSODs, and not just some random BSOD but these specific 2 error codes:<br>
+<ul>
+<li>a crash with error 9f, PCIEe ASPM related, due to the Intel SST drivers, while Intel may deny the issue it's been known for a long time and even confirmed by Microsoft: <a href="https://www.techworm.net/2021/11/microsoft-intel-sst-audio-driver-bsod-windows-11.html" title="https://www.techworm.net/2021/11/microsoft-intel-sst-audio-driver-bsod-windows-11.html" class="https">https://www.techworm.net/2021/11/microsoft-intel-sst-audio-driver-bsod-windows-11.html</a> along with trusted users of other laptop brands like <a href="https://community.frame.work/t/windows-11-bsod-bug-check-0x9f/11617/15" title="https://community.frame.work/t/windows-11-bsod-bug-check-0x9f/11617/15" class="https">https://community.frame.work/t/windows-11-bsod-bug-check-0x9f/11617/15</a> (BTW, this is D Howett, so even if you may not trust my analysis, maybe you'll trust his...) </li>
+<li>a crash with error 14f (watchdog related) which I've found happening for some large 100W USB-C AC related, something which was far more interesting to debug!</li>
+</ul>
+</p>
+
+<h4>0.6.6. The 0x9 critical error / bugcheck code 159<a id="066-the-0x9-critical-error--bugcheck-code-159" class="h_anchor"></a></h4>
+
+<br>
+
+<p>
+But first things first: if in the Event Viewer you get the critical 0x9f error (0x9f is 159 in decimal), you can explore the issue further with WinDebug: you will see it's indeed caused by power saving issues IntcAudioBus.sys. Yes, Intel drivers suck, and Intel should stick to hardware, nothing's new under the sun.
+</p>
+
+<p>
+And yes, updating the SST drivers helps a bit, but it's not a cure all: even with the latest updated  drivers, this error 0x9f can still happen!
+</p>
+
+<p>
+As you can see below, here's what I get whenever I've tried to remove my countermeasures:
+</p>
+
+<p>
+<img src="./X1_Fold_(20RL_20RK)_Optimization/pasted_image063.png">
+</p>
+
+<h4>0.6.7 The 0x14f critical error / bugcheck code 335<a id="067-the-0x14f-critical-error--bugcheck-code-335" class="h_anchor"></a></h4>
+
+<br>
+
+<p>
+The 0x14f error was something very different!
+</p>
+
+<p>
+Actually, this 0x14f is why I'm suggesting specific AC adapters and power cables: I was using a no-name AC adapter I got off Amazon. It's large, reportedly 100W, and never caused me any problem before, even with very powerful (and therefore very power hungry) Lenovo Workstation ""laptops"".
+</p>
+
+<p>
+But this may have just been due to luck, or Lenovo expecting and thus taking into account directly in the firmware the possibility that the AC adapter would sometimes be unable to provide what the system requires, even if the AC adapter said it would before like during the power negotiation!
+</p>
+
+<p>
+For a 1st generation product like the Fold, they may not have had enough feedback to do that yet. Also, the Fold is unusually power hunger: with a known-good USB-C Power Delivery charger from a respected brand like Anker and a MacDoDo cable as recommended above, I've seen the Fold draw 65W: this is a LOT of power, enough to be a fire hazard with the wrong cables or counterfeited AC adapter!
+</p>
+
+<p>
+After realizing the AC adapter I was using was probably a dangerous fake (as the control panel was showing peripherals dropping on and off), I didn't investigate much further: the watchdog being triggered so rapidly that it caused a BSOD 0x14f (possibily due to a race condition or a buffer overflow, given how inconsistent it was) was probably a good thing!
+</p>
+
+<h4>0.7 Don't waste time trying to make the default installation work<a id="07-dont-waste-time-trying-to-make-the-default-installation-work" class="h_anchor"></a></h4>
+
+<br>
+
+<p>
+I tried myself, so you don't have to waste time too: Windows 10 on the Fold just can't be fixed, as even if you removed all the guilty parties to stabilize it the best you can, you'd be missing the many Windows 11 exclusive features they were trying to mimick - and yes, by exclusive I mean they don't exist in Windows 10!
+</p>
+
+<p>
+This mess is the result of the bad interactions between Microsoft cancelling Windows 10X + Lenovo being bad at writing software + Intel being unwilling to admit its mistakes and trying to leave of job of writing good drivers to OEM manufacturers who apparently can't.
+</p>
+
+<p>
+These already compounding issues made far worse by a lack of any kind of synchronization between these 3 large companies. I don't think I'm a bad person,  but after documenting here a few of the many weird things I've seen... I sincerely hope some people will get fired over their bad decisions in the X1 Fold launch - at least before they get the chance to ruin another unique and promising product!
+</p>
+
+<h2>1. Removing cruft (bloatware, spyware, whatever)<a id="1-removing-cruft-bloatware-spyware-whatever" class="h_anchor"></a></h2>
+
+<br>
+
+<p>
+Before anything else, try starting the device with what it came with (the most likely is Windows 10) if only to confirm everything """works""": I'm using many quotes because the Fold does not work reliably on Windows 10 by any definition of "reliably".
+</p>
+
+<p>
+You should also do that to check if it came with a Windows 10 Pro license - if not, go buy a Pro or Workstation key: my go-to place is ebay because there are many sellers, providing a fully automatized experience with no delay unlike Microsoft online store which is also far too expansive.
+</p>
+
+<p>
+There is no difference between Windows 10 and Windows 11 keys, so buy whichever is cheaper!
+</p>
+
+<h3>1.1 Goal: a Microsoft "Signature" device<a id="11-goal-a-microsoft-signature-device" class="h_anchor"></a></h3>
+
+<br>
+
+<p>
+We could try removing things one-by-one, a long and tedious process with uncertain results : Microsoft started the "Signature" program a long time ago, to sell PCs without bloatware: see this page from 10 years ago <a href="https://liliputing.com/2012/05/microsoft-signature-series-windows-pcs-without-bloatware.html" title="https://liliputing.com/2012/05/microsoft-signature-series-windows-pcs-without-bloatware.html" class="https">https://liliputing.com/2012/05/microsoft-signature-series-windows-pcs-without-bloatware.html</a>
+</p>
+
+<p>
+We'll aim for just that, but with the guaranteed results that come from a much simpler approach: "Kill Them All And Let God Sort It Out!"
+</p>
+
+<h3>1.3 But first nuke it from space!<a id="13-but-first-nuke-it-from-space" class="h_anchor"></a></h3>
+
+<br>
+
+<p>
+After you have confirmed everything more or less works on the Fold, boot on a Ubuntu 22 or similar (there are many tutorials explaining how to prepare a Ubuntu thumb drive...), as you will need a recent kernel for the "exotic" X1 Fold hardware.
+</p>
+
+<p>
+When Ubuntu shows you the install screen, you can ask for a terminal with the magical Ctrl Alt T shortcut. `Then start gdisk /dev/nvme0n1`
+</p>
+
+<p>
+Save the existing partitions content if you want (cat or dd and gzip to an external storage device), then clean them out with a nuclear option: delete every existing partition, down to the very last one (so that means including the Windows RE to reinstall the Lenovo crapware that it came bundled with, and the EFI partition too)
+</p>
+
+<p>
+A great alternative to Ubuntu is Arch. I like Arch a lot, and Archboot just released a 202206 image, but it may not be for everyone, while  : <a href="https://gitlab.archlinux.org/tpowa/archboot/-/wikis/Archboot-Homepage" title="https://gitlab.archlinux.org/tpowa/archboot/-/wikis/Archboot-Homepage" class="https">https://gitlab.archlinux.org/tpowa/archboot/-/wikis/Archboot-Homepage</a>
+</p>
+
+<p>
+We could try to optimize, like with the 4k alignment or whatever is ideal for the UMIS, but why bother? Windows 11 will create all the partitions it needs right where it wants them to be!
+</p>
+
+<h3>1.3 My personal philosophy: keep it vanilla whenever you can<a id="13-my-personal-philosophy-keep-it-vanilla-whenever-you-can" class="h_anchor"></a></h3>
+
+<br>
+
+<p>
+I like to keep things as simple and vanilla as possible: I prefer minimalism and not changing defaults if I can live with them.
+</p>
+
+<p>
+Yes, I *do* think twice before changing defaults, because it can have cascading effects due to the complexity of software interactions.
+</p>
+
+<p>
+Yet, I want enough free RAM and CPU cycles to get a very responsive device.
+</p>
+
+<p>
+This is why I try to keep configuration and installed software to a minimum (ex: only one browser), and avoid doing this like running "debloating" or "anti telemetry" scripts: I've found not doing any of this results in a device that is more stable and works better by updating without issues.
+</p>
+
+<p>
+Microsoft is a big company, I'm sure they are going their best for the default experience to be as good as possible for the default user. 
+</p>
+
+<p>
+So if you don't create future issues for yourself by disabling things you shouldn't have disabled, you should get a great experience!
+</p>
+
+<p>
+However, there are a few issues here and there, and even if I'd prefer not to do some tweaks, I have to.
+</p>
+
+<p>
+Also, I may not be the typical user: I love the text mode: the ideal experience for me is when I have a window maximized in full screen, with no tabs: there are zero distractions remaining! (And I love fullscreen textmode apps in general, with no taskbar menubar or anything else!!)
+</p>
+
+<p>
+I understand it's on me to support my quirky tastes, but I'm extremely happy this can be done easily on Windows. If you are reading this guide, you may be like me, and want the best experience.
+</p>
+
+<p>
+So enough talk, let's get there!
+</p>
+
+<h2>2. Windows 11 installation for a "Signature" device<a id="2-windows-11-installation-for-a-signature-device" class="h_anchor"></a></h2>
+
+<br>
+
+<h3>2.1 Preparing the thumbdrive<a id="21-preparing-the-thumbdrive" class="h_anchor"></a></h3>
+
+<br>
+
+<p>
+Download Windows 11 latest stable iso from Microsoft, put it on a thumbdrive, then when you are done, create an ei.cfg file  in the \Sources folder containing
+</p>
+
+<p>
+[EditionID]<br>
+Professional<br>
+[Channel]<br>
+Retail
+</p>
+
+<p>
+If your Fold already came with Pro, change Retail to OEM, if you purchased a Pro key, leave it as is.
+</p>
+
+<p>
+This simple change will install the correct version of Windows 11 right from the beginning, regardless of which key your Fold was factory-provisionned with in its BIOS, and without having to bother with a lengthy Windows Update after entering the right key later in Settings/Product key and activation.
+</p>
+
+<h3>2.2 Creating a local account<a id="22-creating-a-local-account" class="h_anchor"></a></h3>
+
+<br>
+
+<p>
+Microsoft is trying to force our hand to use a Microsoft account instead of local account for login.
+</p>
+
+<p>
+I love Edge / Onedrive / etc, and I always connect my account to my Microsoft account, but I don't like to use my Microsoft account for login as it gives me a weird username.
+</p>
+
+<p>
+Maybe it's due to some arcane limitations somewhere in the system, but with a local user I get to chose my username. I'm csdvrx, so I want my user folder to be C:\Users\csdvrx lol
+</p>
+
+<p>
+Until Microsoft does it jobs right and remove this limitations (LET ME ENTER THE ACCOUNT NAME I WANT!) the simplest way is to get a local account, and you can do that easily thanks to the bad email bug as explained in <a href="https://www.neowin.net/news/bypass-microsoft-account-requirement-when-setting-up-windows-11-with-internet/" title="https://www.neowin.net/news/bypass-microsoft-account-requirement-when-setting-up-windows-11-with-internet/" class="https">https://www.neowin.net/news/bypass-microsoft-account-requirement-when-setting-up-windows-11-with-internet/</a>
+</p>
+
+<p>
+Also if anyone from Microsoft reads this, please treat the Pro users better: I'm willing to do many things to help you improve your OS, like leaving telemetry on, religiously applying your updates and submitting feedback.
+</p>
+
+<p>
+Altering the rules and deciding Pro users don't get to opt-in to have a local account anymore is not the way to win my heart, especially if I'm paying for the privilege to not have to bother with the limitations of Windows Home edition.
+</p>
+
+<p>
+Either you let me do that easily and gracefully, or I will hack my way to how I want my Windows to be on my computer. Regardless, the result will be the same for me, but you'll have lost some goodwill.
+</p>
+
+<h3>2.3 Mix and match<a id="23-mix-and-match" class="h_anchor"></a></h3>
+
+<br>
+
+<p>
+If you have multiple Microsoft accounts and want to mix and match (ex: use my work account for the Stickies, use my personal account for Edge ...) whenever you connect your Microsoft account, do not hit the checkbox called something like "login for everything" which would let Windows reuse this account to connect other Windows software with it: this way, you get to decide what each application uses.
+</p>
+
+<p>
+That's yet another great reason to refer a local account!
+</p>
+
+<h3>2.4 After the updates, there's still cruft!<a id="24-after-the-updates-theres-still-cruft" class="h_anchor"></a></h3>
+
+<br>
+
+<p>
+Let all the updates happen - even the ones you might object to, like Lenovo Vantage or other bloatware. The goal is to get you the latest drivers.
+</p>
+
+<p>
+But please, uninstall the Dolby and the Realtek """apps""": they don't seem to be doing anything at all anyway, except maybe spy on you? At least I couldn't detect any loss of function or feature after removing them. So why waste space on these?
+</p>
+
+<p>
+Also they have a bad tendancy to create issues: Realtek sure loves restarting itself, living rent free in my RAM (and subleasing, and sub-subleasing). The only problem is having several copies running concurrently causes audio issues, like a garbled output with audible artefacts!
+</p>
+
+<p>
+If in doubt, look at who made the software: if it's Microsoft of Lenovo, give it a pass. Anything else, be doubtful!
+</p>
+
+<p>
+Personally, the only things I've left are:
+</p>
+
+<p>
+- From Intel, "Graphics Command Center" but I disabled its autostart in the Task Manager.<br>
+ <img src="./X1_Fold_(20RL_20RK)_Optimization/pasted_image022.png"><br>
+Microsoft has done a great work with its display drivers (Win+P to connect an external screen, Win+K if the screen is wireless) and Snap (Win+Z to change the set of windows shown at the same time, to do what's called "windows tiling" in Linux)
+</p>
+
+<p>
+-  From Realtek, "Audio Console", but with RtkAudUService64_BG autostart disabled in Task Scheduler:
+</p>
+
+<p>
+<img src="./X1_Fold_(20RL_20RK)_Optimization/pasted_image015.png">
+</p>
+
+<p>
+<img src="./X1_Fold_(20RL_20RK)_Optimization/pasted_image021.png">
+</p>
+
+<p>
+This has stopped the choppy/garbled audio problems
+</p>
+
+<p>
+- From Lenovo: "Camera Settings", "Display Refresh" (to adjust the color temperature of the OLED display, which will only be needed in a few years), "Pen Settings" (to adjust the functions of my Wacom pen buttons even if I suspect it could be done from Windows  settings) and "Thinkpad Compact Keyboard with Trackpoint Driver" for the "scroll after a middle click" feature:
+</p>
+
+<p>
+<img src="./X1_Fold_(20RL_20RK)_Optimization/pasted_image017.png">
+</p>
+
+<p>
+In the Task Manager (Ctrl-Alt-Del), I've disabled everything but Onedrive: the Wacom pen and middle-click scroll still work perfectly fine, which means these things weren't needed much anyway, while leaving them disable gets me a faster start and more free RAM!
+</p>
+
+<p>
+<img src="./X1_Fold_(20RL_20RK)_Optimization/pasted_image018.png">
+</p>
+
+<p>
+In the Task Scheduler, go to disable every ImController and SmartStandby service - including the child services for ImController in Plugins and TimeBasedEvents.
+</p>
+
+<p>
+They work poorly anyway, and you're not going to need SmartStandBy as your device will never enter S4 sleep thanks to the great ACPI S0ix power saving and the tweaks we'll add!
+</p>
+
+<p>
+<img src="./X1_Fold_(20RL_20RK)_Optimization/pasted_image019.png">
+</p>
+
+<p>
+Seriously, anything you see in these folders and subfolder, disable it: it will save you power, CPU cycles, and headaches when the software dysfunctions (which is "far too often")
+</p>
+
+<h3>2.5 The special case of Lenovo Vantage<a id="25-the-special-case-of-lenovo-vantage" class="h_anchor"></a></h3>
+
+<br>
+
+<p>
+After configuring a battery charge ceiling, why keep Lenovo Vantage? (or even the ad-free Commercial Vantage if you're lucky like I was)
+</p>
+
+<p>
+In theory, it gets you the latest drivers from Lenovo.
+</p>
+
+<p>
+In practice, they have abandonned the X1 Fold: the only updates you get are because Lenovo changed something in one of their software or drivers that is common to a wide range of hardware. It might benefit someone, but that person is unlikely to be you.
+</p>
+
+<p>
+How Vantage works is tricky: Lenovo created a fake device, that can then beg Windows Update to be installed: this is how Lenovo Vantage manages to invite itself on your clean vanilla Windows 11 install, even after nuking the Windows RE partition!! I believe it's done in the ACPI tables (parent: HTREE\ROOT\0) to survive full reinstall - which is similar to how Computrace works!
+</p>
+
+<p>
+To remove it once and for all, we'll disable this fake device: right click on the start button or press Win-X then M to open the device manager: disable what pretends to be a "System device" and that's called "System interface foundation V2 device": right click on it and select disable, which will change the icon like that:
+</p>
+
+<p>
+<img src="./X1_Fold_(20RL_20RK)_Optimization/pasted_image039.png">
+</p>
+
+<p>
+It's part of Lenovo Vantage through imcontroller, just to pester Windows to install Lenovo Vantage - nevermore!
+</p>
+
+<p>
+Once it looks like that, you can go to Settings/Apps to remove Lenovo Vantage, and it won't come back from the grave ever again!
+</p>
+
+<p>
+<img src="./X1_Fold_(20RL_20RK)_Optimization/pasted_image024.png">
+</p>
+
+<p>
+Make sure to also uninstall the Vantage service, a dependency of Vantage proper that isn't automatically uninstalled otherwise:
+</p>
+
+<p>
+<img src="./X1_Fold_(20RL_20RK)_Optimization/pasted_image075.png">
+</p>
+
+<p>
+(If you really want Vantage, you can try to install Commercial Vantage, it's the Pro version of Vantage usually found in corporate deployments and freely available in the Microsoft store; its only advantage is the lack of ads)
+</p>
+
+<h2>3. Optimizations<a id="3-optimizations" class="h_anchor"></a></h2>
+
+<br>
+
+<p>
+There are a few remaining bugs related to the Intel drivers we need to fix: 1) sometimes the Bluetooth or Wifi stops working 2) you don't have enough RAM for widgets 3) power savings must be configured
+</p>
+
+<h3>3.1. Restarting Intel drivers when they crash to make the Fold stable<a id="31-restarting-intel-drivers-when-they-crash-to-make-the-fold-stable" class="h_anchor"></a></h3>
+
+<br>
+
+<p>
+Create the following files, for example in C:\NetTools\X1FG1 (the name of my X1 Fold Gen1) or C:\NetTools\host-specific (that's my network synchronized folder where I keep host-specific scripts and tools) 
+</p>
+
+<p>
+bt-restart.js:
+</p>
+<pre>
+var wshShell = new ActiveXObject("WScript.Shell");
+wshShell.Run('%SystemRoot%\\system32\\WindowsPowerShell\\v1.0\\powershell.exe -ExecutionPolicy Bypass -File "C:\\NetTools\\host-specific\\bt-restart.ps1"', 0, false);
+</pre>
+
+<br>
+
+<p>
+bt-restart.ps1:
+</p>
+<pre>
+#If (-not ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) {
+#       $Arguments = "&amp; '" + $MyInvocation.mycommand.definition + "'"
+#       Start-Process powershell -Verb runAs -ArgumentList $Arguments
+#       Break
+#}
+
+
+function Show-Toast {
+	Param (
+		  [Parameter(Mandatory = $true, ValueFromPipeline = $true)]
+		  [ValidateNotNullOrEmpty()]
+	  [string] $ToastText
+	)
+	[Windows.UI.Notifications.ToastNotificationManager, Windows.UI.Notifications, ContentType = WindowsRuntime] &gt; $null
+	$Template = [Windows.UI.Notifications.ToastNotificationManager]::GetTemplateContent([Windows.UI.Notifications.ToastTemplateType]::ToastText02)
+
+	$RawXml = [xml] $Template.GetXml()
+	($RawXml.toast.visual.binding.text|where {$_.id -eq "1"}).AppendChild($RawXml.CreateTextNode($ToastText)) &gt; $null
+
+	$SerializedXml = New-Object Windows.Data.Xml.Dom.XmlDocument
+	$SerializedXml.LoadXml($RawXml.OuterXml)
+
+	$Toast = [Windows.UI.Notifications.ToastNotification]::new($SerializedXml)
+	$Toast.Tag =  "PowerShell"
+	$Toast.Group =  "PowerShell"
+	$Toast.ExpirationTime = [DateTimeOffset]::Now.AddMinutes(1)
+
+	$Notifier = [Windows.UI.Notifications.ToastNotificationManager]::CreateToastNotifier("PowerShell")
+
+	$Notifier.Show($Toast);
+}
+
+
+# Class used to be Net, now is Bluetooth:
+# This could use $_.Class -eq "Bluetooth" -and
+# However the name alone is discriminative enough
+$d= Get-PnpDevice| where {$_.friendlyname -eq "Intel(R) Wireless Bluetooth(R)" -and $_.status -eq "Error"}
+if ($null -ne $d) {
+ $d | Disable-PnpDevice -Confirm:$false
+ $d | Enable-PnpDevice -Confirm:$false
+ $d | Show-Notification
+}
+</pre>
+
+<p>
+The js files will launch an unvisible powershell restarting the driver whenever the internal Intel Ax200 crashes - which was often enough to make me write a toast notification for the Bluetooth part, so that I'd at least know why my wireless keyboard has stopped working!!
+</p>
+
+<p>
+You might still have to turn on and off bluetooth from the Quick Actions menu (Win A or click on the wifi icon on the right of the taskbar), but it's become a very rare occurence.
+</p>
+
+<p>
+To make that automatic, use the Task Scheduler to trigger the script on the Bluetooth crash event: 
+</p>
+
+<p>
+<img src="./X1_Fold_(20RL_20RK)_Optimization/pasted_image040.png">
+</p>
+
+<p>
+The action associated to this event is starting the javascript:<br>
+<img src="./X1_Fold_(20RL_20RK)_Optimization/pasted_image041.png">
+</p>
+
+<p>
+In the "General" tab, give it the highest privileges to allow restarting the driver. You should do that whether you are logged in or not (as such crashes can happen at anytime), but since I'm always logged on, I've left it as is:
+</p>
+
+<p>
+<img src="./X1_Fold_(20RL_20RK)_Optimization/pasted_image042.png">
+</p>
+
+<p>
+Now it works great! And nothing freezes anymore (**), which is even better!
+</p>
+
+<p>
+For whatever reason, the crashes also impacted the touchscreen driver in Windows 10, causing the Fold to look unresponsive while it was still working - only you couldn't do anything at all, since you had no Bluetooth, no Wifi and no touchscreen either, so you had to reboot it!
+</p>
+
+<p>
+After experimenting with Linux, I believe this is due to the hardware configuration: both the Bluetooth device and the Intel touchscreen device are connected to the Intel LPSS UART: <a href="https://github.com/quo/ithc-linux" title="https://github.com/quo/ithc-linux" class="https">https://github.com/quo/ithc-linux</a>
+</p>
+
+<p>
+Fixing the Bluetooth seems to be most of that's needed for the touchscreen to remain active.
+</p>
+
+<p>
+Yesterday, I've ever had one touchscreen freeze since then (hence the **), which caused me to complete the Bluetooth restart script... with a WIFI restart script!
+</p>
+
+<p>
+At first, the WIFI crash seems to causes a temporary loss of the connection, which Windows can generally recover from, while the Wi-Fi Direct Virtual drivers aren't that lucky and get stuck in error mode. Then, if you're lucky, your WIFI will reconnected. If not, your touchscreen might crash.
+</p>
+
+<p>
+Wifi direct is rarely useful, but while I'm fixing this driver mess, why not take the opportunity to make it work?
+</p>
+
+<p>
+My current WIFI scripts is:
+</p>
+
+<p>
+wifi-restart.ps1:
+</p>
+<pre>
+function Show-Toast {
+    Param (
+	  [Parameter(Mandatory = $true, ValueFromPipeline = $true)]
+	  [ValidateNotNullOrEmpty()]
+      [string] $ToastText
+    )
+    [Windows.UI.Notifications.ToastNotificationManager, Windows.UI.Notifications, ContentType = WindowsRuntime] &gt; $null
+    $Template = [Windows.UI.Notifications.ToastNotificationManager]::GetTemplateContent([Windows.UI.Notifications.ToastTemplateType]::ToastText02)
+
+    $RawXml = [xml] $Template.GetXml()
+    ($RawXml.toast.visual.binding.text|where {$_.id -eq "1"}).AppendChild($RawXml.CreateTextNode($ToastText)) &gt; $null
+    
+    $SerializedXml = New-Object Windows.Data.Xml.Dom.XmlDocument
+    $SerializedXml.LoadXml($RawXml.OuterXml)
+
+    $Toast = [Windows.UI.Notifications.ToastNotification]::new($SerializedXml)
+    $Toast.Tag =  "PowerShell"
+    $Toast.Group =  "PowerShell"
+    $Toast.ExpirationTime = [DateTimeOffset]::Now.AddMinutes(1)
+
+    $Notifier = [Windows.UI.Notifications.ToastNotificationManager]::CreateToastNotifier("PowerShell")
+
+    $Notifier.Show($Toast);
+}
+
+# FIXME: make the name and class parameters
+# to have 1 script for both Bluetooth and Wifi
+
+$d = Get-PnpDevice| where {$_.Class -eq "Net" -and $_.friendlyname -match "Wi-Fi" -and  $_.status -eq "Error" }
+
+if ($null -ne $d) {
+ $d | Disable-PnpDevice -Confirm:$false
+ $d | Enable-PnpDevice -Confirm:$false
+ $d | Show-Notification
+}
+</pre>
+
+<p>
+The wifi-restart.js is identical, except with a different name inside (wifi-restart.ps1 instead of bluetooth-restart.ps1) and the Task Scheduler events are Forwarded Events from WLAN-AutoConfig for 3 different Event IDs : 8002, 8004, and 10002
+</p>
+
+<p>
+<img src="./X1_Fold_(20RL_20RK)_Optimization/pasted_image047.png">
+</p>
+
+<p>
+This Wifi restart will be completed by another script that disable Wifi and mutes the volume when going to sleep, the only way to guarantee your Fold will sleep for real!
+</p>
+
+<h3>3.2. Disable Widgets<a id="32-disable-widgets" class="h_anchor"></a></h3>
+
+<br>
+
+<p>
+Widgets is a RAM hog even worse than Edge, as it's a new feature that hasn't been optimized yet. 
+</p>
+
+<p>
+You can't afford that with just 8G of RAM like on the Fold, so on't waste time trying to fix the currently unfixable. Instead, let Microsoft try to fix the feature, and in the meantime don't use it and save your RAM: right click on the start menu or press Win-X R to run gpedit.msc 
+</p>
+
+<p>
+Then disable widgets in gpedit.msc : Local Computer Policy / Computer Configuration &gt; Administrative Templates &gt; Windows Components &gt; Widgets
+</p>
+
+<p>
+<img src="./X1_Fold_(20RL_20RK)_Optimization/pasted_image044.png">
+</p>
+
+<p>
+<img src="./X1_Fold_(20RL_20RK)_Optimization/pasted_image043.png">
+</p>
+
+<h3>3.3. Power savings must be configured<a id="33-power-savings-must-be-configured" class="h_anchor"></a></h3>
+
+<br>
+
+<p>
+Once your Fold becomes stable and has enough RAM to do things you want without slowing down to a crawl, the most imporant thing to do next is to make it save power.
+</p>
+
+<p>
+This is a complicated setting, which requires multiple actions!
+</p>
+
+<h4>3.3.1. Disabling connected standby<a id="331-disabling-connected-standby" class="h_anchor"></a></h4>
+
+<br>
+
+<p>
+Connected standby was announced as an important feature of ACPI S01x - back when Windows 8 was new, 3 versions ago and 8 years ago in 2014. 
+</p>
+
+<p>
+In the beginning, like most brand new and ambitious technologies, it was bad. I know because I was learning stats, so I had gotten myself a very nice computer to go to class with. It had problems sleeping, so I got myself a "new to me" Thinkpad X60 that worked better.
+</p>
+
+<p>
+8 years later, it's still bad on many platforms  it fails at its own requirement: <i>"The hardware requirements extend to battery life, in that systems must not drain more than 5% of battery capacity while idle over a 16-hour period" </i> <a href="https://en.wikipedia.org/wiki/InstantGo" title="https://en.wikipedia.org/wiki/InstantGo" class="https">https://en.wikipedia.org/wiki/InstantGo</a>
+</p>
+
+<p>
+Worse, it has aged like radioactive milk, with Dell now saying you shouldn't even try transporting your laptop in a backpack! I don't think they should be legally allowed to call this Dell device a """laptop""" if transporting the Dell device in any sleep mode voids its warranty: <a href="https://news.ycombinator.com/item?id=28639952" title="https://news.ycombinator.com/item?id=28639952" class="https">https://news.ycombinator.com/item?id=28639952</a> 
+</p>
+
+<p>
+I'm ready to cut some slack, but cmon Intel, YOU ONLY HAD ONE JOB! And you've had EIGHT YEARS. Yet you still can't make a driver that won't even crash in practice as we'll see below!
+</p>
+
+<p>
+And even without connected standby, the best you can do on the Fold and many Dells is 5% in 12h: I know because I've spent way too much time trying to fix your mistakes.
+</p>
+
+<p>
+So how exactly do you think you can do better, while adding the burden of intermittent Wifi connections?
+</p>
+
+<p>
+Until you've proven me you can do your job and match the requirements FROM YOUR OWN SPECS, with YOUR OWN DRIVERS, and if not at least do your best in a way that WILL NOT CRASH THE PERIPHERALS THEMSELVES *<b>BUT ALSO OTHER DEVICES</b>* (like my poor touchscreen...), connected standby is NOT WELCOME on my devices!
+</p>
+
+<p>
+To cleanse connected standby with fire, righ click on start on press Win-X A to start an administrative powershell then type:
+</p>
+
+<pre>
+powercfg /setdcvalueindex scheme_current sub_none F15576E8-98B7-4186-B944-EAFA664402D9 0
+powercfg -setdcvalueindex scheme_current sub_none connectivityinstandby 0
+</pre>
+
+<p>
+RIP connected standby, a little angel gone too soon. No actually scratch that, YOU HORRIBLE MONSTROSITY, BURN IN HELL FOR HAVING WASTED TOO MANY HOURS OF MY LIFE!
+</p>
+
+<p>
+And yes, I mean every word of it, maybe because I'm a snobby audiophile, I stream FLAC files in LDAC 990kbps to my Sony 900n wireless headphones, it's not like I'll miss online music which is the only advantage Wifi would get me in connected standby anyway...
+</p>
+
+<h3>3.3.2. Rebuilding hibernation<a id="332-rebuilding-hibernation" class="h_anchor"></a></h3>
+
+<br>
+
+<p>
+Unlike connected standby, hibernation isn't bad: it's the old ACPI S4 that writes the RAM to the drive, to fully power off your device: if nothing is powered-on, you can't drain the battery! (head-taps meme lol)
+</p>
+
+<p>
+But connected standby doesn't want you to be happy: even long after it's dead and gone, connected standby wants you to suffer: when you remove it, connected standby will try to take down hibernation mode as its final move.
+</p>
+
+<p>
+Fortunately, that's an easy fix: in the same administrative PowerShell, run:
+</p>
+
+<pre>
+powercfg /h off 
+powercfg /h on
+</pre>
+
+<p>
+That's all you should need if you didn't tweak Windows partitions! (hibernation depends on Windows RE and the BCD, but that's another story)
+</p>
+
+<h3>3.3.3. Making hibernation not just great again but better, stronger!<a id="333-making-hibernation-not-just-great-again-but-better-stronger" class="h_anchor"></a></h3>
+
+<br>
+
+<p>
+Let's not stop there: "we can rebuild him; we have the technology" to make it BETTER!
+</p>
+
+<p>
+What's a better hibernation? An hibernation that will only happen when you need it.
+</p>
+
+<p>
+Windows is quite clever: there're settings so that hibernation will be engaged only if the power budget is exhausted. Unfortunately, the setting is based on the specs: this means Windows will give up on suspend if battery measurements say the hardware can't hold to the specs.
+</p>
+
+<p>
+The specs say 5%, but to the best of my knowledge, that's wishful thinking on most computers. Given that we can achieve 0.5%/h, let's give it a more reasonable 20% (so 40 hours):
+</p>
+
+<p>
+You can inspect the current values with:
+</p>
+
+<p>
+ <tt>powercfg /qh scheme_current sub_presence standbybudgetpercent</tt><br>
+<tt>Power Scheme GUID: 381b4222-f694-41f0-9685-ff5bb260df2e  (Balanced)</tt><br>
+<tt>  GUID Alias: SCHEME_BALANCED</tt><br>
+<tt>  Subgroup GUID: 8619b916-e004-4dd8-9b66-dae86f806698  (Presence Aware Power Behavior)</tt><br>
+<div style='padding-left: 30pt'>
+<tt>GUID Alias: SUB_PRESENCE</tt><br>
+<tt>Power Setting GUID: 9fe527be-1b70-48da-930d-7bcf17b44990  (Standby Budget Percent)</tt><br>
+<tt>  GUID Alias: STANDBYBUDGETPERCENT</tt><br>
+<tt>  Minimum Possible Setting: 0x00000000</tt><br>
+<tt>  Maximum Possible Setting: 0x00000064</tt><br>
+<tt>  Possible Settings increment: 0x00000001</tt><br>
+<tt>  Possible Settings units: %</tt><br>
+<tt>Current AC Power Setting Index: 0x00000000</tt><br>
+<tt>Current DC Power Setting Index: 0x00000005</tt>
+</div>
+</p>
+
+<p>
+The 5 on the last line means 5%, which you'll never get, meaning your Fold will give up too early and go into suspend, which will make it a bad experience on wakeup because then it will resume slowly... which is why actually Lenovo wrote SmartStandBy!
+</p>
+
+<p>
+To avoid all this non-sense, in an administrative powershell, type:<br>
+<tt>powercfg -setdcvalueindex scheme_current sub_presence standbybudgetpercent 20%</tt>
+</p>
+
+<p>
+This will give you a great experience without the need of Lenovo SmartStandBy (which you already removed if you've been following that guide!)
+</p>
+
+<h3>3.4. Protect your OLED against burn-in<a id="34-protect-your-oled-against-burn-in" class="h_anchor"></a></h3>
+
+<br>
+
+<p>
+OLED screens are sensitive to burn-in, also called ghosting, as the "ghost" of an image can remain visible on your screen if you've shown this static image for too long or too often to the point it has physically damaged the screen.
+</p>
+
+<h4>3.4.1. The best screen saver to save your screen is to display nothing!<a id="341-the-best-screen-saver-to-save-your-screen-is-to-display-nothing" class="h_anchor"></a></h4>
+
+<br>
+
+<p>
+This is nothing new: screen savers were invented to protect against that: <a href="https://en.wikipedia.org/wiki/Screen_burn-in" title="https://en.wikipedia.org/wiki/Screen_burn-in" class="https">https://en.wikipedia.org/wiki/Screen_burn-in</a>
+</p>
+
+<p>
+However, OLED screens consume far less power when showing a fully black image, with black defined as (00,00,00) in RGB, meaning a deep OLED black, not just a "very dark shade grey".
+</p>
+
+<p>
+You can save both your screen, your battery life, power and the environment by setting your screen to turn off after 1 minute, and the account to lock after 2 minutes (120 seconds), for both DC (battery) and AC (when plugged):
+</p>
+
+<pre>
+powercfg.exe -change -monitor-timeout-dc 60
+powercfg.exe -change -monitor-timeout-ac 60
+powercfg.exe /SETACVALUEINDEX SCHEME_CURRENT SUB_VIDEO VIDEOCONLOCK 120
+powercfg.exe /SETDCVALUEINDEX SCHEME_CURRENT SUB_VIDEO VIDEOCONLOCK 120
+</pre>
+
+<h4>3.4.2. Another screen saver is to hide the taskbar and titlebar<a id="342-another-screen-saver-is-to-hide-the-taskbar-and-titlebar" class="h_anchor"></a></h4>
+
+<br>
+
+<p>
+Both the tasbar and titlebar remain in position: this can be bad for your screen. Set the taskbar to autohide in system preferences which you can quickly open with Win-I
+</p>
+
+<p>
+A great powertool is nircmd by Nir Sofer: it can help you control the transparency of every window, including the taskbar! Get it at the bottom of the page on <a href="https://www.nirsoft.net/utils/nircmd.html" title="https://www.nirsoft.net/utils/nircmd.html" class="https">https://www.nirsoft.net/utils/nircmd.html</a> 
+</p>
+
+<p>
+This way, when you show up your taskbar, it will be translucent, meaning you will still be able to see your actual window content through the taskbar!
+</p>
+
+<p>
+This requires more advanced settings with AHK or Task Scheduler, but to try the effect type:
+</p>
+
+<p>
+<tt>nircmd.exe win trans class Shell_TrayWnd 128</tt>
+</p>
+
+<p>
+To turn it back to normal:
+</p>
+
+<p>
+<tt>nircmd.exe win trans class Shell_TrayWnd 100</tt>
+</p>
+
+<p>
+There are many things you can do with nircmd, it's a wonderful tool!
+</p>
+
+<p>
+If you want that done automatically, use the Task Scheduler to run this command when you login into your account, as we did before with the Intel Driver restarter.
+</p>
+
+<h3>3.5. Do not disable indexing<a id="35-do-not-disable-indexing" class="h_anchor"></a></h3>
+
+<br>
+
+<p>
+Windows indexing is bad.
+</p>
+
+<p>
+In theory, you could disable the service, or let it be but after excluding everything from indexing, by recursively applying that change to C:\
+</p>
+
+<p>
+In practice, many things inside Windows depend on indexing, so try to not disable it: instead, use "Everything", installed as a service so it won't nag you with the administrative privilege required windows: <a href="https://www.voidtools.com/" title="https://www.voidtools.com/" class="https">https://www.voidtools.com/</a>
+</p>
+
+<p>
+It works much better, giving results almost instantly and changing them as you type!
+</p>
+
+<p>
+If you like it, you can later map it to a shortcut in something like AHK
+</p>
+
+<h3>3.6. Let your CPU go to 0%<a id="36-let-your-cpu-go-to-0" class="h_anchor"></a></h3>
+
+<br>
+
+<p>
+In the control panel, the mininum CPU is set to 5%. It seems to leftover from a time where 100% idle CPU could cause some crash.
+</p>
+
+<p>
+We live in 2022, so bring this setting to a good value for current computers:
+</p>
+
+<p>
+<tt>powercfg -setacvalueindex SCHEME_CURRENT SUB_PROCESSOR PROCTHROTTLEMIN 5</tt>
+</p>
+
+<p>
+Apply the changes immediately with:
+</p>
+
+<p>
+<tt>powercfg.exe -setactive SCHEME_CURRENT</tt>
+</p>
+
+<p>
+This is supported by guides like <a href="https://www.minitool.com/lib/minimum-processor-state.html" title="https://www.minitool.com/lib/minimum-processor-state.html" class="https">https://www.minitool.com/lib/minimum-processor-state.html</a> even if there've been some serious discussions for gamers <a href="https://www.tenforums.com/gaming/176759-whats-recommended-minimum-processor-state.html" title="https://www.tenforums.com/gaming/176759-whats-recommended-minimum-processor-state.html" class="https">https://www.tenforums.com/gaming/176759-whats-recommended-minimum-processor-state.html</a>
+</p>
+
+<h3>3.7 Stopping  Intel Wifi and muting Intel audio to save battery during sleep<a id="37-stopping--intel-wifi-and-muting-intel-audio-to-save-battery-during-sleep" class="h_anchor"></a></h3>
+
+<br>
+
+<p>
+These are 2 very important things to do if you want to get a battery discharge rate aroud 0.5%/h in ACPI S01x with instant resume!
+</p>
+
+<p>
+First, go to Task Scheduler to create tasks for sleep and resume.
+</p>
+
+<p>
+Let's start with sleep: the trigger will be System Source: Kernel-Power EventID: 506, which means going into sleep:
+</p>
+
+<p>
+<img src="./X1_Fold_(20RL_20RK)_Optimization/pasted_image074.png">
+</p>
+
+<p>
+<img src="./X1_Fold_(20RL_20RK)_Optimization/pasted_image073.png">
+</p>
+
+<p>
+<img src="./X1_Fold_(20RL_20RK)_Optimization/pasted_image069.png">
+</p>
+
+<p>
+Make the trigger perform the action without any condition:
+</p>
+
+<p>
+<img src="./X1_Fold_(20RL_20RK)_Optimization/pasted_image071.png">
+</p>
+
+<p>
+Give the highest privileges to the action, and let it run whether you are logged in or not (in case of a Windows Update):
+</p>
+
+<p>
+<img src="./X1_Fold_(20RL_20RK)_Optimization/pasted_image076.png">
+</p>
+
+<p>
+Do the same to turn wifi back on when waking up ("resuming") after sleep: the only 2 differences are:<br>
+- the script name:<br>
+<img src="./X1_Fold_(20RL_20RK)_Optimization/pasted_image070.png">
+</p>
+
+<p>
+- and the Event ID being 507 (wakeup) and
+</p>
+
+<p>
+<img src="./X1_Fold_(20RL_20RK)_Optimization/pasted_image077.png">
+</p>
+
+<br>
+
+<p>
+As you've noticed, these depend on 3 scripts:
+</p>
+
+<p>
+Here's what wifi-off.js looks like:
+</p>
+
+<pre>
+var wshShell = new ActiveXObject("WScript.Shell");
+wshShell.Run('%SystemRoot%\\system32\\WindowsPowerShell\\v1.0\\powershell.exe -version 5.1 -ExecutionPolicy Bypass -File "C:\\NetTools\\host-specific\\setWifiState.ps1" -WifiStatus Off', 0, false);
+wshShell.Run('C:\\NetTools\\nircmdc.exe mutesysvolume 1', 0, false);
+wshShell.Run('C:\\NetTools\\nircmdc.exe setsysvolume 0', 0, false);
+</pre>
+
+<p>
+And what wifi-on.js looks like:
+</p>
+
+<pre>
+var wshShell = new ActiveXObject("WScript.Shell");
+wshShell.Run('%SystemRoot%\\system32\\WindowsPowerShell\\v1.0\\powershell.exe -version 5.1 -ExecutionPolicy Bypass -File "C:\\NetTools\\host-specific\\setWifiState.ps1" -WifiStatus On', 0, false);
+;wshShell.Run('C:\\NetTools\\nircmdc.exe mutesysvolume 0', 0, false);
+;wshShell.Run('C:\\NetTools\\nircmdc.exe setsysvolume 40000', 0, false);
+</pre>
+
+<p>
+As you can see, they are calling nircmd to mute the audio (surely you have installed nircmd as suggested? if not, now is the time!) and a script called setWifiState.ps1 which contains:
+</p>
+
+<pre>
+[CmdletBinding()] Param (
+	[Parameter(Mandatory=$true)][ValidateSet('Off', 'On')][string]$WifiStatus
+)
+
+Add-Type -AssemblyName System.Runtime.WindowsRuntime
+$asTaskGeneric = ([System.WindowsRuntimeSystemExtensions].GetMethods() | ? { $_.Name -eq 'AsTask' -and $_.GetParameters().Count -eq 1 -and $_.GetParameters()[0].ParameterType.Name -eq 'IAsyncOperation`1' })[0]
+Function Await($WinRtTask, $ResultType) {
+	$asTask = $asTaskGeneric.MakeGenericMethod($ResultType)
+	$netTask = $asTask.Invoke($null, @($WinRtTask))
+	$netTask.Wait(-1) | Out-Null
+	$netTask.Result
+}
+[Windows.Devices.Radios.Radio,Windows.System.Devices,ContentType=WindowsRuntime] | Out-Null
+[Windows.Devices.Radios.RadioAccessStatus,Windows.System.Devices,ContentType=WindowsRuntime] | Out-Null
+Await ([Windows.Devices.Radios.Radio]::RequestAccessAsync()) ([Windows.Devices.Radios.RadioAccessStatus]) | Out-Null
+$radios = Await ([Windows.Devices.Radios.Radio]::GetRadiosAsync()) ([System.Collections.Generic.IReadOnlyList[Windows.Devices.Radios.Radio]])
+$wifi = $radios | ? { $_.Kind -eq 'WiFi' }
+[Windows.Devices.Radios.RadioState,Windows.System.Devices,ContentType=WindowsRuntime] | Out-Null
+Await ($wifi.SetStateAsync($WifiStatus)) ([Windows.Devices.Radios.RadioAccessStatus]) | Out-Null
+</pre>
+
+<p>
+Just copy paste that in the notepad.
+</p>
+
+<h3>3.8 That's all, folks!<a id="38-thats-all-folks" class="h_anchor"></a></h3>
+
+<br>
+
+<p>
+There could be other settings worth tweaking, but for now, the battery life seems good enough for me.
+</p>
+
+<p>
+If you want more, check guides like <a href="https://gist.github.com/raspi/203aef3694e34fefebf772c78c37ec2c" title="https://gist.github.com/raspi/203aef3694e34fefebf772c78c37ec2c" class="https">https://gist.github.com/raspi/203aef3694e34fefebf772c78c37ec2c</a> where they try to show and tweak everything. Even if that's for a raspberry pi, it's the same Windows running on it! The interesting settings should be:<br>
+<ul>
+<li>USB 3 Link Power Mangement </li>
+<li>NVMe Idle Timeout</li>
+<li>NVMe Power State Transition Latency Tolerance</li>
+<li>Link State Power Management (called "ASPM" on Linux)</li>
+</ul>
+</p>
+
+<p>
+There're many resources like <a href="https://gist.github.com/Dark4Codrutz/2fb0adde19b0b3a56ec2ba572d25486e" title="https://gist.github.com/Dark4Codrutz/2fb0adde19b0b3a56ec2ba572d25486e" class="https">https://gist.github.com/Dark4Codrutz/2fb0adde19b0b3a56ec2ba572d25486e</a> giving ideas, but I like to understand what I do (and why).
+</p>
+
+<p>
+A large amount of these tweaks goes against my ideas of "minimalism", like:<br>
+<ul>
+<li>Power Policy:Video quality (Plugged In)</li>
+<li>Enables Windows Media Player to optimize for quality or power savings when playing video</li>
+<li>Quality Mode: Optimize for Video Quality</li>
+</ul>
+</p>
+
+<h3>3.9 No, what about the other settings? Pleaaase??<a id="39-no-what-about-the-other-settings-pleaaase" class="h_anchor"></a></h3>
+
+<br>
+
+<p>
+If you want, but this is experiental!
+</p>
+
+<p>
+After optimizing the battery life for ACPI S01x (something very important to me) I'm now working on optimizing the battery life when the device is in use.
+</p>
+
+<p>
+It's a work-in-progress, but I can already recommend enabling the following: in the Start menu, type "Edit plan settings" <br>
+<img src="./X1_Fold_(20RL_20RK)_Optimization/pasted_image048.png">
+</p>
+
+<p>
+This will open the control panel where you can change the plan settings, like:
+</p>
+
+<p>
+<img src="./X1_Fold_(20RL_20RK)_Optimization/pasted_image049.png"><br>
+Select "Change advanced power settings"
+</p>
+
+<p>
+<img src="./X1_Fold_(20RL_20RK)_Optimization/pasted_image050.png">
+</p>
+
+<p>
+You may not get all the settings visible until you unhide them with specific commands, like to connectedstandy options:<br>
+<tt>powercfg -attributes F15576E8-98B7-4186-B944-EAFA664402D9 -ATTRIB_HIDE</tt>
+</p>
+
+<p>
+For example, Intel iGPU settings didn't show until a key was manually changed to 2 in HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Power\PowerSettings\44f3beca-a7c0-460e-9df2-bb8b99e0cba6\3619c3f2-afb2-4afc-b0e9-e7fef372de36
+</p>
+
+<p>
+This can be done automatically with:
+</p>
+
+<p>
+<tt>REG ADD HKLM\SYSTEM\CurrentControlSet\Control\Power\PowerSettings\44f3beca-a7c0-460e-9df2-bb8b99e0cba6\3619c3f2-afb2-4afc-b0e9-e7fef372de36 /v Attributes /t REG_DWORD /d 2 /f</tt>
+</p>
+
+<p>
+<tt>powercfg -attributes 44f3beca-a7c0-460e-9df2-bb8b99e0cba6 3619c3f2-afb2-4afc-b0e9-e7fef372de36 -ATTRIB_HIDE</tt>
+</p>
+
+<p>
+Likewise for USB3:
+</p>
+
+<p>
+ <tt>powercfg -attributes 2a737441-1930-4402-8d77-b2bebba308a3 d4e98f31-5ffe-4ce1-be31-1b38b384c009 -ATTRIB_HIDE</tt>
+</p>
+
+<p>
+<tt>REG ADD HKLM\SYSTEM\CurrentControlSet\Control\Power\PowerSettings\2a737441-1930-4402-8d77-b2bebba308a3\d4e98f31-5ffe-4ce1-be31-1b38b384c009 /v Attributes /t REG_DWORD /d 2 /f</tt>
+</p>
+
+<p>
+And WIFI:<br>
+ <tt>powercfg -attributes 19cbb8fa-5279-450e-9fac-8a3d5fedd0c1 12bbebe6-58d6-4636-95bb-3217ef867c1a -ATTRIB_HIDE</tt>
+</p>
+
+<p>
+<tt>REG ADD HKLM\SYSTEM\CurrentControlSet\Control\Power\PowerSettings\19cbb8fa-5279-450e-9fac-8a3d5fedd0c1\12bbebe6-58d6-4636-95bb-3217ef867c1a /v Attributes /t REG_DWORD /d 2 /f</tt>
+</p>
+
+<p>
+You should then configure powersaving on both AC and DC: inspect the currect valuess with powercfg <a href="file:///C:/l" title="/l" class="file">/l</a> then change then with:
+</p>
+
+<p>
+ <tt>powercfg /SETDCVALUEINDEX SCHEME_CURRENT 19cbb8fa-5279-450e-9fac-8a3d5fedd0c1 12bbebe6-58d6-4636-95bb-3217ef867c1a 3</tt>
+</p>
+
+<p>
+<tt> powercfg /SETACVALUEINDEX SCHEME_CURRENT 19cbb8fa-5279-450e-9fac-8a3d5fedd0c1 12bbebe6-58d6-4636-95bb-3217ef867c1a 3</tt>
+</p>
+
+<p>
+This is because, or some weird reason, the Intel WIFI power savings on battery are ignored, and the only way to impact them (if we are to believe powercfg <a href="file:///C:/energy" title="/energy" class="file">/energy</a>) is to also change the plugged-in settings.
+</p>
+
+<p>
+Otherwise, powercfg reports the "Radio Power Policy is Maximum Performance":
+</p>
+
+<pre>
+Power Policy:802.11 Radio Power Policy is Maximum Performance (Plugged In)
+The current power policy for 802.11-compatible wireless network adapters is not configured to use low-power modes.
+</pre>
+
+<br>
+
+<p>
+This might be related to the Power Plan used by Windows 11: 
+</p>
+
+<pre>
+Plan Name	OEM Balanced
+Plan GUID	{381b4222-f694-41f0-9685-ff5bb260df2e}
+</pre>
+
+<p>
+Even if there's no reason to use plugged in value on battery (!!!), the only way I got powercfg to change its tune was to change both with the above. It then looks like:
+</p>
+
+<p>
+<img src="./X1_Fold_(20RL_20RK)_Optimization/pasted_image051.png">
+</p>
+
+<br>
+
+<p>
+If needed, you can later reverse that with<br>
+<tt>powercfg -setacvalueindex 381b4222-f694-41f0-9685-ff5bb260df2e 19cbb8fa-5279-450e-9fac-8a3d5fedd0c1 12bbebe6-58d6-4636-95bb-3217ef867c1a 0</tt>
+</p>
+
+<p>
+The wake times are related to connected standy, which I don't want or need even if the computer is plugged in as it may cause Windows Update (and I don't like to wake up to a warm computer).
+</p>
+
+<p>
+I'm still experimenting, but for now I have
+</p>
+
+<p>
+<img src="./X1_Fold_(20RL_20RK)_Optimization/pasted_image052.png">
+</p>
+
+<p>
+USB settings are mostly for the internal bus and devices, same for the PCI ASPM which shouldn't even be perceptible unless the device firmware has a bug, something unfortunately frequent for NVMe drives on Linux
+</p>
+
+<p>
+<img src="./X1_Fold_(20RL_20RK)_Optimization/pasted_image053.png"><br>
+<img src="./X1_Fold_(20RL_20RK)_Optimization/pasted_image054.png">
+</p>
+
+<p>
+The CPU settings are 0-100 following the "rush-to-idle" modern theory of powersaving.
+</p>
+
+<p>
+For the Wifi settings in preferences, there're too many to use screenshots, but in case it may help here're my current settings thanks to powershell:
+</p>
+
+<p>
+<tt>powershell Get-NetAdapterAdvancedProperty -Name "Wi-Fi" -AllPropertie</tt>
+</p>
+
+<pre>
+Name                      DisplayName                    DisplayValue
+----                      -----------                    ------------
+Wi-Fi                     Channel Width for 2.4GHz       Auto
+Wi-Fi                     Channel Width for 5GHz         Auto
+Wi-Fi                     Mixed Mode Protection          RTS/CTS Enabled
+Wi-Fi                     --                             --
+Wi-Fi                     U-APSD support                 Disabled
+Wi-Fi                     --                             --
+Wi-Fi                     Throughput Booster             Disabled
+Wi-Fi                     802.11a/b/g Wireless Mode      6. Dual Band 802.11a/b/g
+Wi-Fi                     Preferred Band                 1. No Preference
+Wi-Fi                     Transmit Power                 3. Medium
+Wi-Fi                     Roaming Aggressiveness         3. Medium
+Wi-Fi                     Fat Channel Intolerant         Disabled
+Wi-Fi                     Wake on Pattern Match          Disabled
+Wi-Fi                     Wake on Magic Packet           Disabled
+Wi-Fi                     GTK rekeying for WoWLAN        Enabled
+Wi-Fi                     ARP offload for WoWLAN         Enabled
+Wi-Fi                     NS offload for WoWLAN          Enabled
+Wi-Fi                     Sleep on WoWLAN Disconnect     Enabled
+Wi-Fi                     MIMO Power Save Mode           Auto SMPS
+Wi-Fi                     Global BG Scan blocking        Never
+Wi-Fi                     Packet Coalescing              Enabled
+Wi-Fi                     802.11n/ac/ax Wireless Mode    4. 802.11ax
+</pre>
+
+<h2>4. Microsoft Office<a id="4-microsoft-office" class="h_anchor"></a></h2>
+
+<br>
+
+<p>
+Let's do that the US army way: "yesterday technology, tomorrow!"
+</p>
+
+<h3>4.1 Just... why?<a id="41-just-why" class="h_anchor"></a></h3>
+
+<br>
+
+<p>
+I love light/fast and responsive software, so I love Microsoft Office.
+</p>
+
+<p>
+My favorite versions are 2007 and 2010 - yes, you've read correctly, something over 10 years old that I never got to use when it was brand new, even if I would have needed it a few years later during my BA.
+</p>
+
+<p>
+The reason I love old versions of Office is because they give you all the features *<b>plus</b>* a nice retro user interface *<b>while</b>* being more responsive than uglier modern apps.
+</p>
+
+<p>
+Let's take it straight from Task Manager: Edge is a memory hog, even if changes like sleeping tabs have made it by far the best browser in Windows:<br>
+<img src="./X1_Fold_(20RL_20RK)_Optimization/pasted_image034.png">
+</p>
+
+<p>
+Zim is what I'm using to manage my notes write this guide, with screenshots bring cleaned in Paint
+</p>
+
+<p>
+Let's put side-by-side what matters, Mail.app and Calendar next to a full-fledged Outlook:
+</p>
+
+<p>
+<img src="./X1_Fold_(20RL_20RK)_Optimization/pasted_image035.png">
+</p>
+
+<p>
+45M of RAM used will give you a great calendar and mail, compared to a so-so version in Mail.app that'll eat 38M by itself and still need another 30M to get you a so-so calendar.
+</p>
+
+<p>
+Likewise, why use Wordpad when Word 2010 starts just as fast? Or why bother with OpenOffice when you can get the real deal, working with every .xlsx and .docx oddity that may be emailed to you?
+</p>
+
+<p>
+Why use Office 365 when you can get a license that will never expire and never ask you for more money?
+</p>
+
+<h3>4.2 But it's not supported!<a id="42-but-its-not-supported" class="h_anchor"></a></h3>
+
+<br>
+
+<p>
+Yes it's not supported, LTS doesn't mean "forever", but it still works!
+</p>
+
+<p>
+In my Settings/Updates/History, I have page and pages like:<br>
+<img src="./X1_Fold_(20RL_20RK)_Optimization/pasted_image067.png">
+</p>
+
+<p>
+Apparently, Microsoft doesn't seem to like that it still works so well: they will nag you to pay for 365, but I like fast software, which 365 is everything but!
+</p>
+
+<p>
+<img src="./X1_Fold_(20RL_20RK)_Optimization/pasted_image028.png">
+</p>
+
+<p>
+And I'm used to making things work even when they don't want to (like... the Fold!) so I don't need any hand holding - if it *<i>can*</i> work I'll *<i><b>make* </b></i> it work! So I'll support myself!
+</p>
+
+<p>
+As you won't get any support, just buy whatever is the cheapest, brand new and still shrink wrapped off ebay.
+</p>
+
+<p>
+And hey - here I'm, running Edge with a zillion of tabs, with another memory hog like Zim sitting right next to Office with both Word *<b>and</b>* Outlook opened, taking screenshots with many Paint still opened, a few Windows Terminals... but I'm barely using 2/3 of the RAM and 1/10th of the CPU!
+</p>
+
+<p>
+Even more important: the system is extremely responsive, and <b>I LOVE THAT!</b>
+</p>
+
+<h3>4.3 How much does it costs?<a id="43-how-much-does-it-costs" class="h_anchor"></a></h3>
+
+<br>
+
+<p>
+It won't cost you much, as software it's cheap when it's that old!
+</p>
+
+<p>
+Also, if you run Linux, you'll get a wonderful experience: even with wine, it's faster and uses far less RAM and disk than OpenOffice!
+</p>
+
+<p>
+Both 2003 and 2007 are rated platinium (as in, everything works) on <a href="https://appdb.winehq.org/objectManager.php?sClass=application&iId=31" title="https://appdb.winehq.org/objectManager.php?sClass=application&amp;iId=31" class="https">https://appdb.winehq.org/objectManager.php?sClass=application&amp;iId=31</a> even if it says it's for the installer only:
+</p>
+
+<p>
+<img src="./X1_Fold_(20RL_20RK)_Optimization/pasted_image026.png">
+</p>
+
+<p>
+2007 is a "sweet point" : there's a 32 and a 64 bit version, it works great both on Linux (with Wine) and on Windows 10 and 11 (natively).
+</p>
+
+<p>
+Look for brand new and sealed, as you don't want pirated software with a key that may have already been used: it goes for about $30 usually, today the best I could find was $40
+</p>
+
+<p>
+<img src="./X1_Fold_(20RL_20RK)_Optimization/pasted_image030.png">
+</p>
+
+<p>
+At almost twice the price, 2010 is a bit expansive, but as you can install in on 5 devices and it'll never stop working, that's a steal!
+</p>
+
+<p>
+<img src="./X1_Fold_(20RL_20RK)_Optimization/pasted_image027.png">
+</p>
+
+<p>
+That's what I use on my fold (and no it doesn't show the activation key lol)
+</p>
+
+<p>
+<img src="./X1_Fold_(20RL_20RK)_Optimization/pasted_image029.png">
+</p>
+
+<h3>4.4 Making Office 2010 work on Windows 11<a id="44-making-office-2010-work-on-windows-11" class="h_anchor"></a></h3>
+
+<br>
+
+<p>
+You don't need to do anything special: just let it fully install, don't enter your key until it's done installing all of its KB updates and rebooting a few times.
+</p>
+
+<p>
+If you don't let it fully update, activation will fail with error 0x80070190 (ask me how I found out!) but the nice thing is you can try again later.
+</p>
+
+<p>
+If you are in a hurry look for officesp2010-kb2687455-fullfile-x64-en-us which will give you most of the updates you need.
+</p>
+
+<p>
+If you use gmail, look for Google Workspace Sync Microsoft Office "GWSMO" to let Outlook 2010 connect to gmail and get push notifications.
+</p>
+
+<p>
+Microsoft has retired the venerable Internet Explorer, which can sometimes confuse Office 2010 if you don't have IE yet try to open html files.
+</p>
+
+<p>
+Save the following in notepad as "office2010-with-edge.reg" and double click on it to add to your registry everything Office needs to know about opening html files on Windows 10+
+</p>
+
+<pre>
+Windows Registry Editor Version 5.00
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Classes\htmlfile\shell\Open\Command]
+@="\"C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe\"  %1"
+</pre>
+
+<h2>5. Linux software on Windows<a id="5-linux-software-on-windows" class="h_anchor"></a></h2>
+
+<br>
+
+<p>
+If like me you like terminal software, install the Windows Terminal from Microsoft store. I used to recommend the Dev version, as it's already very stable, and get the good things faster.
+</p>
+
+<p>
+But in 2022, there're no good reasons left to recommend it over the vanilla WT. However, that may change when we finally get Sixel support:  <a href="https://github.com/microsoft/Terminal/issues/448" title="https://github.com/microsoft/Terminal/issues/448" class="https">https://github.com/microsoft/Terminal/issues/448</a> and light/dark theme synchronization.
+</p>
+
+<p>
+The main limitation with the Fold is the 8G of RAM: it's not comfortable for WSL2. Instead, you should prefer WSL1 or Msys2
+</p>
+
+<h3>5.<i>1. Option 1: WSL1 for Linux</i><a id="51-option-1-wsl1-for-linux" class="h_anchor"></a></h3>
+
+<br>
+
+<p>
+If you are not familiar with Arch and pacman, just install WSL1 with a regular distribution:
+</p>
+
+<pre>
+dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+wsl --set-default-version 1
+wsl --list --verbose
+</pre>
+
+<br>
+
+<p>
+WSL1 is great, way more ambitious and innovative than the simple hypervisor model of WSL2. But besides admiring it, I can't help you much more than that, as it's not what I do.
+</p>
+
+<h3>5.2. Option 2: Msys2<a id="52-option-2-msys2" class="h_anchor"></a></h3>
+
+<br>
+
+<p>
+Msys2 has a reputation of being hackish but it works great: it consumes less RAM than WSL2 for my needs, and it's existed for a long time so it's more polished than WSL1
+</p>
+
+<p>
+Just go to msys2.org or find one of the many guides showing how to install msys2 and keeping it up-to-date with the `pacman -Syuu` mantras.
+</p>
+
+<h3>5.3. Windows Terminal or Mintty?<a id="53-windows-terminal-or-mintty" class="h_anchor"></a></h3>
+
+<br>
+
+<p>
+I love mintty, as it supports many things the Windows Terminal can't support yet, mostly ligatures (my favorite font is iosevka SS04) and sixels (if you don't know what that is, check <a href="https://github.com/csdvrx/sixel-gnuplot" title="https://github.com/csdvrx/sixel-gnuplot" class="https">https://github.com/csdvrx/sixel-gnuplot</a>
+</p>
+
+<p>
+However, Windows Terminal is evolving quickly, and I believe Microsoft will take the right decisions and add all the features required to make the Terminal experience better.
+</p>
+
+<p>
+In the meantime, if you want something that looks like sixels, use my sixel-tmux <a href="https://github.com/csdvrx/sixel-tmux" title="https://github.com/csdvrx/sixel-tmux" class="https">https://github.com/csdvrx/sixel-tmux</a> which is conveniently available for you on Arch through AUR : <a href="https://aur.archlinux.org/packages/sixel-tmux-git" title="https://aur.archlinux.org/packages/sixel-tmux-git" class="https">https://aur.archlinux.org/packages/sixel-tmux-git</a>
+</p>
+
+<h3>5.4. Using Msys2 with WT insteal of mintty<a id="54-using-msys2-with-wt-insteal-of-mintty" class="h_anchor"></a></h3>
+
+<br>
+
+<p>
+Configure a Windows Terminal profile for it:
+</p>
+
+<p>
+<img src="./X1_Fold_(20RL_20RK)_Optimization/pasted_image036.png">
+</p>
+
+<p>
+Command line:<br>
+<tt>C:\msys64\usr\bin\env.exe MSYS='enable_pcon winsymlinks:nativestrict' MSYSTEM=MSYS CHERE_INVOKING=1 MSYS2_PATH_TYPE=inherit /bin/bash.exe --login -i</tt>
+</p>
+
+<p>
+Starting directory:<br>
+<tt>%USERPROFILE%\home</tt>
+</p>
+
+<p>
+Icon:<br>
+<tt>C:\msys64\msys2.ico</tt>
+</p>
+
+<p>
+It works very well:<br>
+<img src="./X1_Fold_(20RL_20RK)_Optimization/pasted_image037.png">
+</p>
+
+<h2>6. Anything else?<a id="6-anything-else" class="h_anchor"></a></h2>
+
+<br>
+
+<p>
+If you have ideas/suggestions, please submit them via github!
+</p>
+
+
+	</div>
+
+</div>
+
+</body>
+</html>
